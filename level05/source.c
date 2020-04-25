@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 int main(void) {
     /*
     0x08048444 <+0>:	push   ebp
@@ -8,12 +10,21 @@ int main(void) {
     0x0804844c <+8>:	sub    esp,0x90
         total stack = 144
     0x08048452 <+14>:	mov    DWORD PTR [esp+0x8c],0x0
+        esp+0x8c = 140 ; 144 -140 = 4 ; int?
+    */
+    int var1 = 0; /* esp+0x8c */
+    char buffer[100]; /* esp+0x28 */
+    /*
     0x0804845d <+25>:	mov    eax,ds:0x80497f0
     0x08048462 <+30>:	mov    DWORD PTR [esp+0x8],eax
     0x08048466 <+34>:	mov    DWORD PTR [esp+0x4],0x64
     0x0804846e <+42>:	lea    eax,[esp+0x28]
+        esp+0x28 = 40 ; 14- 40 = 100 ; char[100] ?
     0x08048472 <+46>:	mov    DWORD PTR [esp],eax
     0x08048475 <+49>:	call   0x8048350 <fgets@plt>
+    */
+    fgets(&buffer, 100, stdin);
+    /*
     0x0804847a <+54>:	mov    DWORD PTR [esp+0x8c],0x0
     0x08048485 <+65>:	jmp    0x80484d3 <main+143>
     0x08048487 <+67>:	lea    eax,[esp+0x28]
