@@ -18,10 +18,10 @@ Start in GDB
 
 Lot of things, fopen and fread on the password file. And we can see a format string at `main+654`. The printf call a variable directly
 
-   0x0000000000400a96 <+642>:	lea    rax,[rbp-0x70]
-   0x0000000000400a9a <+646>:	mov    rdi,rax
-   0x0000000000400a9d <+649>:	mov    eax,0x0
-   0x0000000000400aa2 <+654>:	call   0x4006c0 <printf@plt>
+    0x0000000000400a96 <+642>:	lea    rax,[rbp-0x70]
+    0x0000000000400a9a <+646>:	mov    rdi,rax
+    0x0000000000400a9d <+649>:	mov    eax,0x0
+    0x0000000000400aa2 <+654>:	call   0x4006c0 <printf@plt>
 
 Try to print the stack with this format string
 
