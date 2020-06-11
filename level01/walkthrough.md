@@ -17,8 +17,8 @@ The program use fgets for asking the inputs
 
 First there is a function `verify_user_name` for check the username
 
-   0x08048528 <+88>:	call   0x8048370 <fgets@plt>
-   0x0804852d <+93>:	call   0x8048464 <verify_user_name>
+    0x08048528 <+88>:	call   0x8048370 <fgets@plt>
+    0x0804852d <+93>:	call   0x8048464 <verify_user_name>
 
 
 The function do manual things equivalent to an strncmp on the input and the string `dat_wil`
@@ -60,10 +60,10 @@ Good, the program continue and ask the password
 
 In the disassembly, we can see also a function `verify_user_pass` after the second fgets
 
-   0x08048574 <+164>:	call   0x8048370 <fgets@plt>
-   0x08048579 <+169>:	lea    eax,[esp+0x1c]
-   0x0804857d <+173>:	mov    DWORD PTR [esp],eax
-   0x08048580 <+176>:	call   0x80484a3 <verify_user_pass>
+    0x08048574 <+164>:	call   0x8048370 <fgets@plt>
+    0x08048579 <+169>:	lea    eax,[esp+0x1c]
+    0x0804857d <+173>:	mov    DWORD PTR [esp],eax
+    0x08048580 <+176>:	call   0x80484a3 <verify_user_pass>
 
 The function do manual things equivalent to an strncmp, like the first function, on the input and the string `admin`
 
@@ -108,23 +108,23 @@ But the password "admin" does not work
 
 In the code we can see the fgets call :
 
-   0x0804855c <+140>:	mov    eax,ds:0x804a020
-   0x08048561 <+145>:	mov    DWORD PTR [esp+0x8],eax
-   0x08048565 <+149>:	mov    DWORD PTR [esp+0x4],0x64
-   0x0804856d <+157>:	lea    eax,[esp+0x1c]
-   0x08048571 <+161>:	mov    DWORD PTR [esp],eax
-   0x08048574 <+164>:	call   0x8048370 <fgets@plt>
+    0x0804855c <+140>:	mov    eax,ds:0x804a020
+    0x08048561 <+145>:	mov    DWORD PTR [esp+0x8],eax
+    0x08048565 <+149>:	mov    DWORD PTR [esp+0x4],0x64
+    0x0804856d <+157>:	lea    eax,[esp+0x1c]
+    0x08048571 <+161>:	mov    DWORD PTR [esp],eax
+    0x08048574 <+164>:	call   0x8048370 <fgets@plt>
 
 The buffer is stored on `esp+0x1c`. The fgets will read 0x64 (100)
 
 At the top of the main, there is a bzero on this buffer :
 
-   0x080484db <+11>:	lea    ebx,[esp+0x1c]
-   0x080484df <+15>:	mov    eax,0x0
-   0x080484e4 <+20>:	mov    edx,0x10
-   0x080484e9 <+25>:	mov    edi,ebx
-   0x080484eb <+27>:	mov    ecx,edx
-   0x080484ed <+29>:	rep stos DWORD PTR es:[edi],eax
+    0x080484db <+11>:	lea    ebx,[esp+0x1c]
+    0x080484df <+15>:	mov    eax,0x0
+    0x080484e4 <+20>:	mov    edx,0x10
+    0x080484e9 <+25>:	mov    edi,ebx
+    0x080484eb <+27>:	mov    ecx,edx
+    0x080484ed <+29>:	rep stos DWORD PTR es:[edi],eax
 
 We can deduct the buffer size with the bzero : `0x10` (16)
 
